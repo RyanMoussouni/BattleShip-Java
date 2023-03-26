@@ -1,11 +1,13 @@
 package battleship;
 
+import java.util.*;
+
 public class Gameboard {
     public final int SIZE = 10;
     public final String IS_MISSED_MESSAGE = "Missed!";
     public final String IS_HIT_MESSAGE = "Hit!";
-    public final String IS_SINKED_MESSAGE = "Sinked!";
-    private String fireResultMessage = "No fire was intented";
+    public final String IS_SUNK_MESSAGE = "Sunk!";
+    private String fireResultMessage = "No fire was intended";
     private Cell[][] grid;
 
     public Gameboard() {
@@ -13,6 +15,7 @@ public class Gameboard {
     }
 
     private void setGridWithWater() {
+        grid = new Cell[SIZE][SIZE];
         for (int i = 0; i<SIZE; i++) {
             for (int j = 0; j<SIZE; j++) {
                 grid[i][j] = Cell.WATER;
@@ -20,19 +23,9 @@ public class Gameboard {
         }
     }
 
-    public void setBattleShipAt(Position cellPosition) {
-        int x = cellPosition.GetHorizontalPosition();
-        int y = cellPosition.GetVerticalPosition();
-        grid[x][y] = Cell.BATTLESHIP;
+    public String getFireResultMessage() {
+        return this.fireResultMessage;
     }
-    
-    public void setWaterAt(Position cellPosition) {
-        int x = cellPosition.GetHorizontalPosition();
-        int y = cellPosition.GetVerticalPosition();
-        grid[x][y] = Cell.WATER;
-    }
-
-
 
     public void fireAt(Position cellPosition) {
         if (isWithinRange(cellPosition)) {
@@ -49,6 +42,26 @@ public class Gameboard {
         }
     }
 
+    private void updateFireResultMessage(Position cellPosition) {
+        if (isLastBattleshipPartAt(cellPosition)) {
+            fireResultMessage = IS_SUNK_MESSAGE;
+        } else if (isBattleshipAt(cellPosition)) {
+            fireResultMessage = IS_HIT_MESSAGE;
+        } else {
+            fireResultMessage = IS_MISSED_MESSAGE;
+        }
+    }
+
+    /** Two battleships can't stick together */
+    private boolean isLastBattleshipPartAt(Position cellPosition) {
+        Position topLeftCorner = new Position(0,0);
+        Position bottomRightCorner = new Position(SIZE, SIZE);
+        Position[] surroundingPositions = cellPosition.getSurroundingPositions(topLeftCorner, bottomRightCorner);
+
+        return Arrays.stream(surroundingPositions)
+            .allMatch(this::isWaterAt);
+    }
+
     private void throwCellOutOfRangeException(Position cellPosition) {
         String message = String.format("The provided cell of position (%d %d) is out of range",
                                        cellPosition.GetHorizontalPosition(),
@@ -63,25 +76,16 @@ public class Gameboard {
                && (y >= 0) && (y < SIZE);
     }
 
-    private void updateFireResultMessage(Position cellPosition) {
-        if (isLastBattleshipPartAt(cellPosition)) {
-            fireResultMessage = IS_SINKED_MESSAGE;
-        } else if (isBattleshipAt(cellPosition)) {
-            fireResultMessage = IS_HIT_MESSAGE;
-        } else {
-            fireResultMessage = IS_SINKED_MESSAGE;
-        }
-    }
-
     public boolean isBattleshipAt(Position cellPosition) {
         int x = cellPosition.GetHorizontalPosition();
         int y = cellPosition.GetVerticalPosition();
         return grid[x][y] == Cell.BATTLESHIP;
     }
 
-    private boolean isLastBattleshipPartAt(Position cellPosition) {
-        int
-        return grid[]
+    public boolean isWaterAt(Position cellPosition) {
+        int x = cellPosition.GetHorizontalPosition();
+        int y = cellPosition.GetVerticalPosition();
+        return grid[x][y] == Cell.WATER;
     }
 
     private void hitAt(Position cellPosition) {

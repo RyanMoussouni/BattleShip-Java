@@ -26,36 +26,37 @@ public class Position {
     }
 
     public Position[] getSurroundingPositions(int[] xLimits, int[] yLimits) {
-        if (isTopLeftCorner(x, y, xLimits, yLimits)) {
+        if (isTopLeftCorner(xLimits, yLimits)) {
             throw new NoSuchAlgorithmException();
-        } else if (isTopRightCorner(x, y, xLimits, yLimits) ) {
+        } else if (isTopRightCorner(xLimits, yLimits) ) {
             throw new NoSuchAlgorithmException();
-        } else if (isDownLeftCorner(x, y, xLimits, yLimits)) {
+        } else if (isDownLeftCorner(xLimits, yLimits)) {
             throw new NoSuchAlgorithmException();
-        } else if (isDownRightCorner(x, y, xLimits, yLimits)) {
+        } else if (isDownRightCorner(xLimits, yLimits)) {
             throw new NoSuchAlgorithmException();
-        } else {
+        } else { //isInCentralPart
+            
             throw new NoSuchAlgorithmException();
         }
 
     }
 
-    private static boolean isTopLeftCorner(int x, int y, int[] xLimits, int[] yLimits) {
+    public boolean isTopLeftCorner(int[] xLimits, int[] yLimits) {
         return x < xLimits[1]  
             && x > xLimits[0]
             && y < yLimits[1]
             && y > yLimits[1];
     }
 
-    private static boolean isTopRightCorner(int x, int y, int[] xLimits, int[] yLimits) {
+    public boolean isTopRightCorner(int[] xLimits, int[] yLimits) {
+        return x < xLimits[]
+    }
+
+    public boolean isDownLeftCorner(int[] xLimits, int[] yLimits) {
         return true;
     }
 
-    private static boolean isDownLeftCorner(int x, int y, int[] xLimits, int[] yLimits) {
-        return true;
-    }
-
-    private static boolean isDownRightCorner(int x, int y, int[] xLimits, int[] yLimits) {
+    public boolean isDownRightCorner(int[] xLimits, int[] yLimits) {
         return true;
     }
 }

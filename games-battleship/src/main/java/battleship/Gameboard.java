@@ -5,10 +5,10 @@ public class Gameboard {
     private Cell[][] grid;
 
     public Gameboard() {
-        SetGridWithWater();
+        setGridWithWater();
     }
 
-    private void SetGridWithWater() {
+    private void setGridWithWater() {
         for (int i = 0; i<SIZE; i++) {
             for (int j = 0; j<SIZE; j++) {
                 grid[i][j] = Cell.WATER;
@@ -16,12 +16,28 @@ public class Gameboard {
         }
     }
 
-    public void FireAt() {
+    public void fireAt(Position cellPosition) {
+        if (isWithinRange(cellPosition)) {
+            fireAtGameboardCell(cellPosition);
+        } else {
+            throwCellOutOfRangeException(cellPosition);
+        }
     }
 
-    public boolean isWithinRange(Position p) {
-        int x = p.GetHorizontalPosition();
-        int y = p.GetVerticalPosition();
+    private void fireAtGameboardCell(Position cellPosition) {
+
+    }
+
+    private void throwCellOutOfRangeException(Position cellPosition) {
+        String message = String.format("The provided cell of position (%d %d) is out of range",
+                                    cellPosition.GetHorizontalPosition(),
+                                    cellPosition.GetVerticalPosition());
+        throw new IllegalArgumentException(message);
+    }
+
+    public boolean isWithinRange(Position cellPosition) {
+        int x = cellPosition.GetHorizontalPosition();
+        int y = cellPosition.GetVerticalPosition();
         return (x >= 0) && (x < SIZE) 
                && (y >= 0) && (y < SIZE);
     }

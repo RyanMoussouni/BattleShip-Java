@@ -9,11 +9,14 @@ public class Gameboard {
     }
 
     private void SetGridWithWater() {
-        
+        for (int i = 0; i<SIZE; i++) {
+            for (int j = 0; j<SIZE; j++) {
+                grid[i][j] = Cell.WATER;
+            }
+        }
     }
 
     public void FireAt() {
-
     }
 
     public boolean isWithinRange(Position p) {

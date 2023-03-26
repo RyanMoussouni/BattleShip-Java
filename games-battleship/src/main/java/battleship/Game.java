@@ -6,7 +6,7 @@ public class Game {
     private boolean isFinished;
 
     public Game() {
-        players = new Player[] {new HumanPlayer(), new RobotPlayer()};
+        players = new Player[] { new HumanPlayer(), new RobotPlayer() };
         isFirstPlayerTurn = true;
         isFinished = false;
     }

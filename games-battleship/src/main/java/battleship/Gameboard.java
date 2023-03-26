@@ -2,6 +2,9 @@ package battleship;
 
 public class Gameboard {
     public final int SIZE = 10;
+    public final String IS_MISSED_MESSAGE = "Missed!";
+    public final String IS_HIT_MESSAGE = "Hit!";
+    public final String IS_SINKED_MESSAGE = "Sinked!";
     private Cell[][] grid;
 
     public Gameboard() {
@@ -25,7 +28,7 @@ public class Gameboard {
     }
 
     private void fireAtGameboardCell(Position cellPosition) {
-
+        
     }
 
     private void throwCellOutOfRangeException(Position cellPosition) {

@@ -7,7 +7,7 @@ public class Gameboard {
     public final String IS_MISSED_MESSAGE = "Missed!";
     public final String IS_HIT_MESSAGE = "Hit!";
     public final String IS_SUNK_MESSAGE = "Sunk!";
-    private String fireResultMessage = "No fire was intended";
+    private String firingResultMessage = "No firing happened";
     private Cell[][] grid;
 
     public Gameboard() {
@@ -23,8 +23,8 @@ public class Gameboard {
         }
     }
 
-    public String getFireResultMessage() {
-        return this.fireResultMessage;
+    public String getFiringResultMessage() {
+        return this.firingResultMessage;
     }
 
     public void fireAt(Position cellPosition) {
@@ -44,11 +44,11 @@ public class Gameboard {
 
     private void updateFireResultMessage(Position cellPosition) {
         if (isLastBattleshipPartAt(cellPosition)) {
-            fireResultMessage = IS_SUNK_MESSAGE;
+            firingResultMessage = IS_SUNK_MESSAGE;
         } else if (isBattleshipAt(cellPosition)) {
-            fireResultMessage = IS_HIT_MESSAGE;
+            firingResultMessage = IS_HIT_MESSAGE;
         } else {
-            fireResultMessage = IS_MISSED_MESSAGE;
+            firingResultMessage = IS_MISSED_MESSAGE;
         }
     }
 

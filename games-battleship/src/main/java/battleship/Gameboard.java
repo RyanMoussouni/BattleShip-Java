@@ -9,7 +9,17 @@ public class Gameboard {
     }
 
     private void SetGridWithWater() {
+        
     }
 
-    public void FireAt()
+    public void FireAt() {
+
+    }
+
+    public boolean isWithinRange(Position p) {
+        int x = p.GetHorizontalPosition();
+        int y = p.GetVerticalPosition();
+        return (x >= 0) && (x < SIZE) 
+               && (y >= 0) && (y < SIZE);
+    }
 }

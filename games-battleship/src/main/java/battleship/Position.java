@@ -25,38 +25,46 @@ public class Position {
         return y;
     }
 
-    public Position[] getSurroundingPositions(int[] xLimits, int[] yLimits) {
-        if (isTopLeftCorner(xLimits, yLimits)) {
+    public Position[] getSurroundingPositions(Position topLeft, Position bottomRight) {
+        if (isTopLeftCorner(topLeft, bottomRight)) {
             throw new NoSuchAlgorithmException();
-        } else if (isTopRightCorner(xLimits, yLimits) ) {
+        } else if (isTopRightCorner(topLeft, bottomRight) ) {
             throw new NoSuchAlgorithmException();
-        } else if (isDownLeftCorner(xLimits, yLimits)) {
+        } else if (isBottomLeftCorner(topLeft, bottomRight)) {
             throw new NoSuchAlgorithmException();
-        } else if (isDownRightCorner(xLimits, yLimits)) {
+        } else if (isBottomRightCorner(topLeft, bottomRight)) {
             throw new NoSuchAlgorithmException();
         } else { //isInCentralPart
-            
             throw new NoSuchAlgorithmException();
         }
 
     }
 
-    public boolean isTopLeftCorner(int[] xLimits, int[] yLimits) {
-        return x < xLimits[1]  
-            && x > xLimits[0]
+    public boolean isTopLeftCorner(Position topLeft, Position bottomRight) {
+        return x == xLimits[1]  
+            && x == xLimits[0]
             && y < yLimits[1]
             && y > yLimits[1];
     }
 
-    public boolean isTopRightCorner(int[] xLimits, int[] yLimits) {
-        return x < xLimits[]
+    public boolean isTopRightCorner(Position topLeft, Position bottomRight) {
+        return x == xLimits[1]  
+            && x == xLimits[0]
+            && y < yLimits[0]
+            && y > yLimits[1];
     }
 
-    public boolean isDownLeftCorner(int[] xLimits, int[] yLimits) {
-        return true;
+    public boolean isBottomLeftCorner(Position topLeft, Position bottomRight) {
+        return x == xLimits[1]  
+            && x == xLimits[0]
+            && y < yLimits[0]
+            && y > yLimits[1];
     }
 
-    public boolean isDownRightCorner(int[] xLimits, int[] yLimits) {
-        return true;
+    public boolean isBottomRightCorner(Position topLeft, Position bottomRight) {
+        return x == xLimits[1]  
+            && x == xLimits[0]
+            && y < yLimits[0]
+            && y > yLimits[1];
     }
 }

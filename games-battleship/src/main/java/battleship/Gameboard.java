@@ -24,7 +24,7 @@ public class Gameboard {
     }
 
     public String getFiringResultMessage() {
-        return this.firingResultMessage;
+        return firingResultMessage;
     }
 
     public void fireAt(Position cellPosition) {

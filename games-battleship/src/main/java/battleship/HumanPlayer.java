@@ -1,5 +1,8 @@
 package battleship;
 
-public class HumanPlayer implements Player {
-    
+public class HumanPlayer extends AbstractPlayer {
+    @Override
+    public Position selectTarget() {
+        var X = System.sc
+    }
 }

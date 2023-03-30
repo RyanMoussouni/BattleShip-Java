@@ -1,7 +1,8 @@
 package battleship;
 
 public interface Player {
-    Position selectPosition();
-    boolean isTheLoser();
+    Position selectTarget();
+    boolean isDefeated();
+    void fireAt(Position target);
 }
 

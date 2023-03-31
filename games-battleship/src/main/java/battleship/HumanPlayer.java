@@ -19,6 +19,10 @@ public class HumanPlayer extends AbstractPlayer {
         return tryParseUserInputLine(userInputLine);
     }
 
+    private String fetchUserInputLine() {
+        return scanner.nextLine();
+    }
+
     private Position tryParseUserInputLine(String line) {
         try {
             return parseUserInputLine(line);

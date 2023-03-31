@@ -69,6 +69,18 @@ public class Gameboard {
         throw new IllegalArgumentException(message);
     }
 
+    // probably not the best idea: creating a dependency between two unrelated methods
+    public boolean isAnyBattleship() {
+        boolean isAnyBattleship = false;
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                Position position = new Position(i, j);
+                isAnyBattleship = isAnyBattleship || isBattleshipAt(position);
+            }
+        }
+        return isAnyBattleship;
+    }
+
     public boolean isWithinRange(Position cellPosition) {
         int x = cellPosition.GetHorizontalPosition();
         int y = cellPosition.GetVerticalPosition();

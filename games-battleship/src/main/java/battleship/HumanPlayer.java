@@ -14,6 +14,11 @@ public class HumanPlayer extends AbstractPlayer {
     }
 
     @Override
+    public void placeBattleships() {
+
+    }
+
+    @Override
     public Position selectTarget() {
         var userInputLine = fetchUserInputLine();
         return tryParseUserInputLine(userInputLine);

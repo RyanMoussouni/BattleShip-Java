@@ -26,7 +26,7 @@ public class GameboardTest {
         // Act
 
         // Assert
-        Assert.assertTrue(gameboard.isWaterAt(cellPosition) == Cell.WATER);
+        Assert.assertTrue(gameboard.isWaterAt(cellPosition));
     }
 
     @Test

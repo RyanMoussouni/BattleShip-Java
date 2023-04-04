@@ -23,6 +23,31 @@ public class Gameboard {
         }
     }
 
+    public void setBattleship(Position prow, boolean isHorizontal, int length) {
+        Position[] battleshipPositions = translateToCartesian(prow, isHorizontal, length);
+        for (var pos : battleshipPositions) {
+            setBattleship(pos);
+        }
+    }
+
+    private static Position[] translateToCartesian(Position prow, boolean isHorizontal, int length) {
+        var x = prow.GetHorizontalPosition();
+        var y = prow.GetVerticalPosition();
+
+        var positions = new ArrayList<Position>();
+        Position pos;
+        for (int k=0; k<length; k++) {
+            pos = isHorizontal ? new Position(x, y+k)
+                    : new Position(x+k, y);
+            positions.add(pos);
+        }
+        return (Position[]) positions.toArray();
+    }
+
+    public void setBattleship(Position position) {
+        this.grid[position.GetHorizontalPosition()][position.GetVerticalPosition()] = Cell.BATTLESHIP;
+    }
+
     public String getFiringResultMessage() {
         return firingResultMessage;
     }

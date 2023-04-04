@@ -5,7 +5,7 @@ public class Position {
     private int y;
 
     public Position(int x, int y) {
-        SetHorizontalPosition(x);
+        SetHorizontalPosition(x); //confusing
         SetVerticalPosition(y);
     }
 

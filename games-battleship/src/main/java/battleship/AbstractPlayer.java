@@ -1,7 +1,7 @@
 package battleship;
 
 public abstract class AbstractPlayer implements Player {
-    private final Gameboard board;
+    protected final Gameboard board;
 
     public AbstractPlayer() {
         board = new Gameboard();

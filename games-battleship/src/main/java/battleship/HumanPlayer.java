@@ -26,8 +26,9 @@ public class HumanPlayer extends AbstractPlayer {
     private Position tryParseUserInputLine(String line) {
         try {
             return parseUserInputLine(line);
-        } catch (ParseException e) { //TODO: find a better exception to use
+        } catch (ParseException e) {
             handleInvalidFormat();
+            return new Position(0,0); //TODO: remove this
         }
     }
 
@@ -39,6 +40,11 @@ public class HumanPlayer extends AbstractPlayer {
             int secondDigit = Integer.parseInt(line.substring(1,2));
             return new Position(firstDigit, secondDigit);
         }
+    }
+
+    private void handleInvalidFormat() {
+        //TODO: implement this
+        throw new UnsupportedOperationException();
     }
 
     private boolean isTwoDigitNumber(String line) {

@@ -45,7 +45,13 @@ public class Gameboard {
     }
 
     public void setBattleship(Position position) {
-        this.grid[position.GetHorizontalPosition()][position.GetVerticalPosition()] = Cell.BATTLESHIP;
+        grid[position.GetHorizontalPosition()][position.GetVerticalPosition()] = Cell.BATTLESHIP;
+    }
+
+    public void setBattleship(Position[] positions) {
+        for (var pos : positions) {
+            grid[pos.GetHorizontalPosition()][pos.GetVerticalPosition()] = Cell.BATTLESHIP;
+        }
     }
 
     public String getFiringResultMessage() {

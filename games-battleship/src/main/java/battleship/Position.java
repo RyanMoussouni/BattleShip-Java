@@ -39,10 +39,10 @@ public class Position {
     }
 
     public Position[] getSurroundingPositions(Position topLeft, Position bottomRight) {
-        Position positionToTheLeft = new Position(x, y-1);
-        Position positionToTheRight = new Position(x, y+1);
-        Position positionAbove = new Position(x-1, y);
-        Position positionBelow = new Position(x+1, y);
+        Position positionToTheLeft = new Position(x-1, y);
+        Position positionToTheRight = new Position(x+1, y);
+        Position positionAbove = new Position(x, y-1);
+        Position positionBelow = new Position(x, y+1);
         
         if (isTopLeftCorner(topLeft, bottomRight)) {
             return new Position[] {

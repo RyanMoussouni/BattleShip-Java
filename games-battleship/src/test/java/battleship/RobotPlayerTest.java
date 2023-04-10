@@ -2,7 +2,8 @@ package battleship;
 
 import org.junit.Test;
 import org.junit.Assert;
-import org.junit.Before;
+
+import battleship.Player.RobotPlayer;
 
 public class RobotPlayerTest {
 

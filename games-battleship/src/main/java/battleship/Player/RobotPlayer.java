@@ -1,4 +1,6 @@
-package battleship;
+package battleship.Player;
+
+import battleship.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,11 +9,10 @@ public class RobotPlayer extends AbstractPlayer {
 
     @Override
     public void placeBattleships() {
-        placeBattleshipRandomly(5);
-        placeBattleshipRandomly(4);
-        placeBattleshipRandomly(3);
-        placeBattleshipRandomly(3);
-        placeBattleshipRandomly(2);
+        placeBattleshipRandomly(AIRCRAFT_CARRIER_LENGTH);
+        placeBattleshipRandomly(CRUISER_LENGTH);
+        placeBattleshipRandomly(CRUISER_LENGTH);
+        placeBattleshipRandomly(SUBMARINE_LENGTH);
     }
 
     private void placeBattleshipRandomly(int length) {
@@ -31,8 +32,8 @@ public class RobotPlayer extends AbstractPlayer {
                 : board.SIZE;
 
         List<Position> candidates = new ArrayList<>();
-        for (int i=0; i<board.SIZE - maximalPossibleProwY; i++) {
-            for (int j=0; j<board.SIZE - length*maximalPossibleProwX; j++) {
+        for (int i=0; i<maximalPossibleProwY; i++) {
+            for (int j=0; j<maximalPossibleProwX; j++) {
                 candidates.add(new Position(j, i));
             }
         }
@@ -43,8 +44,8 @@ public class RobotPlayer extends AbstractPlayer {
 
     @Override
     public Position selectTarget() {
-        var randomX = (int)(Math.random() * board.SIZE);
-        var randomY = (int)(Math.random() * board.SIZE);
+        var randomX = (int) (Math.random() * board.SIZE);
+        var randomY = (int) (Math.random() * board.SIZE);
 
         return new Position(randomX, randomY);
     }

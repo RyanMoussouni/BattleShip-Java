@@ -14,7 +14,7 @@ public class Gameboard {
         setGridWithWater();
     }
 
-    private void setGridWithWater() {
+    public void setGridWithWater() {
         grid = new Cell[SIZE][SIZE];
         for (int i = 0; i<SIZE; i++) {
             for (int j = 0; j<SIZE; j++) {
@@ -31,6 +31,7 @@ public class Gameboard {
     }
 
     private static Position[] translateToCartesian(Position prow, boolean isHorizontal, int length) {
+        var tp = new Position[] {};
         var x = prow.GetHorizontalPosition();
         var y = prow.GetVerticalPosition();
 
@@ -41,7 +42,7 @@ public class Gameboard {
                     : new Position(x+k, y);
             positions.add(pos);
         }
-        return (Position[]) positions.toArray();
+        return positions.toArray(tp);
     }
 
     public void setBattleship(Position position) {
@@ -50,7 +51,7 @@ public class Gameboard {
 
     public void setBattleship(Position[] positions) {
         for (var pos : positions) {
-            grid[pos.GetHorizontalPosition()][pos.GetVerticalPosition()] = Cell.BATTLESHIP;
+            grid[pos.GetVerticalPosition()][pos.GetHorizontalPosition()] = Cell.BATTLESHIP;
         }
     }
 
@@ -60,6 +61,7 @@ public class Gameboard {
 
     public void fireAt(Position cellPosition) {
         if (isWithinRange(cellPosition)) {
+            updateFireResultMessage(cellPosition);
             fireAtGameboardCell(cellPosition); //TODO: find a better name, somehow
         } else {
             throwCellOutOfRangeException(cellPosition);
@@ -68,7 +70,6 @@ public class Gameboard {
 
     private void fireAtGameboardCell(Position cellPosition) {
         if (isBattleshipAt(cellPosition)) {
-            updateFireResultMessage(cellPosition);
             hitAt(cellPosition); //TODO: side effect
         }
     }
@@ -89,8 +90,13 @@ public class Gameboard {
         Position bottomRightCorner = new Position(SIZE, SIZE);
         Position[] surroundingPositions = cellPosition.getSurroundingPositions(topLeftCorner, bottomRightCorner);
 
+        return isSurroundedByWater(surroundingPositions)
+            && isBattleshipAt(cellPosition);
+    }
+
+    private boolean isSurroundedByWater(Position[] surroundingPositions) {
         return Arrays.stream(surroundingPositions)
-            .allMatch(this::isWaterAt);
+                .allMatch(this::isWaterAt);
     }
 
     private void throwCellOutOfRangeException(Position cellPosition) {
@@ -110,6 +116,13 @@ public class Gameboard {
             }
         }
         return isAnyBattleship;
+    }
+
+    public boolean isAnySurroundingBattleship(int X, int Y) {
+        var pos = new Position(X, Y);
+        Position[] surrPos = pos.getSurroundingPositions(new Position(0,0), new Position(SIZE, SIZE));
+        return Arrays.stream(surrPos)
+            .anyMatch(this::isBattleshipAt);
     }
 
     public boolean isWithinRange(Position cellPosition) {

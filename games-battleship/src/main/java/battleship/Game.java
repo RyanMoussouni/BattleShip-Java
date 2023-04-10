@@ -37,7 +37,7 @@ public class Game {
             .forEach(Player::placeBattleships);
     }
 
-    //TODO: check if overloading is appropriate here
+
     private void playTurn() {
         Player humanPlayer = players[0];
         Player robotPlayer = players[1];

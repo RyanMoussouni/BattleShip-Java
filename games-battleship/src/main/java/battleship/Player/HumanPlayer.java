@@ -71,13 +71,12 @@ public class HumanPlayer extends AbstractPlayer {
 
     private void handleParsingException(ParseException e) {
         System.out.println(INVALID_BATTLESHIP_INPUT_LINE_FORMAT_MESSAGE);
-        //TODO: comprendre comment utiliser les fnalités de la stacktrace
+        //TODO: use stackTrace features
         /*
         var stackTrace = e.getStackTrace();
         stackTrace[]
          */
         clearBattleships();
-        //placeBattleships();
     }
 
     private void validateBattleshipPositions(Position[] positions) {
